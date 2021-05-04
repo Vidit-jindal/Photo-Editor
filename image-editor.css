@@ -24,3 +24,11 @@
     display:block;
     margin-right: 50px;
 }
+
+#resizer {
+    border:2px dashed #000
+}
+
+#toolbar button {
+    padding: 10px 20px 10px 20px;
+}
