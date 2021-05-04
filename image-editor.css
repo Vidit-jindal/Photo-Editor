@@ -19,3 +19,8 @@
     display:block;
     margin: auto;
 }
+
+#toolbar {
+    display:block;
+    margin-right: 50px;
+}
