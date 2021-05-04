@@ -1,1 +1,9 @@
-
+#imageEditor {
+    margin:auto;
+    padding:20px;
+    border:1px solid #4b4b4b;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    background-color:#ababab;
+}
