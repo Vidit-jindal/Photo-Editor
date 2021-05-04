@@ -7,3 +7,10 @@
     border-radius:8px;
     background-color:#ababab;
 }
+
+#editorContainer {
+    display:block;
+    overflow: auto;
+    width: 800px;
+    height: 500px;
+}
