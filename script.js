@@ -15,4 +15,11 @@ onload = function () {
                     editor.height = img.height;
                     context.drawImage(img, 0,0);
                 };
+                img.onerror = () => {
+                    console.error("The provided file couldn't be loaded as an Image media");
+                };
+
+                img.src = URL.createObjectURL(this.files[0]);
+            };
+        },
 
