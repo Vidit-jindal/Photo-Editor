@@ -22,4 +22,11 @@ onload = function () {
                 img.src = URL.createObjectURL(this.files[0]);
             };
         },
+        "save" : function(){
+            const image = editor.toDataURL();
+            const link = document.createElement('a');
+            link.download = 'image.png';
+            link.href = image;
+            link.click();
+        },
 
