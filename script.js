@@ -49,4 +49,14 @@ onload = function () {
             let cols = editor.width; // Width is number of columns
             let rows = editor.height; // Height is number of rows
             let image = getRGBArray(rows, cols);
+            
+            for(let i=0;i<rows;i++){
+                for(let j=0;j<Math.floor(cols/2);j++){
+                    let tmp = image[i][j];
+                    image[i][j] = image[i][cols-1-j];
+                    image[i][cols-1-j] = tmp;
+                }
+            }
+            setImageData(image, rows, cols);
+        },
 
