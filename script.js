@@ -44,3 +44,9 @@ onload = function () {
             }
             setImageData(image, rows, cols);
         },
+        
+        "flipVert" : function(){
+            let cols = editor.width; // Width is number of columns
+            let rows = editor.height; // Height is number of rows
+            let image = getRGBArray(rows, cols);
+
