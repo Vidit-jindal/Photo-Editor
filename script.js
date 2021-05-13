@@ -30,3 +30,7 @@ onload = function () {
             link.click();
         },
 
+        "flipHor" : function(){
+            let cols = editor.width; // Width is number of columns
+            let rows = editor.height; // Height is number of rows
+            let image = getRGBArray(rows, cols);
