@@ -60,3 +60,18 @@ onload = function () {
             setImageData(image, rows, cols);
         },
 
+        "rotateR" : function () {
+            let cols = editor.width; // Width is number of columns
+            let rows = editor.height; // Height is number of rows
+            let image = getRGBArray(rows, cols);
+
+            let rimage = [];
+            for(let i=0;i<cols;i++){
+                let row = [];
+                for(let j=rows-1;j>=0;j--){
+                    row.push(image[j][i]);
+                }
+                rimage.push(row);
+            }
+            setImageData(rimage, cols, rows);
+        },
