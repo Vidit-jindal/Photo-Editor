@@ -75,3 +75,14 @@ onload = function () {
             }
             setImageData(rimage, cols, rows);
         },
+
+        "resize" : function(){
+            let cols = editor.width; // Width is number of columns
+            let rows = editor.height; // Height is number of rows
+            let image = getRGBArray(rows, cols);
+
+            let inp = prompt('Current Width : '+cols + '\n' + 'Current Height : '+rows + '\n' + 'Give the new width and height in a space separated manner').split(' ');
+            if(inp.length!==2){
+                alert('Incorrect dimensions in input');
+                return;
+            }
