@@ -92,3 +92,15 @@ onload = function () {
                 alert('Input is not a proper number');
                 return;
             }
+            
+            let hratio = rows/nrows;
+            let wratio = cols/ncols;
+
+            let nimage = [];
+            for(let i=0;i<nrows;i++){
+                let row = [];
+                for(let j=0;j<ncols;j++){
+                    row.push(image[Math.floor(i*hratio)][Math.floor(j*wratio)]);
+                }
+                nimage.push(row);
+            }
