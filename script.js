@@ -121,3 +121,18 @@ onload = function () {
             setImageData(image, rows, cols);
         }
     };
+"greyscale" : function(){
+            let cols = editor.width; // Width is number of columns
+            let rows = editor.height; // Height is number of rows
+            let image = getRGBArray(rows, cols);
+
+            for(let i=0;i<rows;i++){
+                for(let j=0;j<cols;j++){
+                    let pixel = image[i][j];
+                    let shade = Math.floor(0.3*pixel[0]+0.59*pixel[1]+0.11*pixel[2]);
+                    image[i][j][0] = image[i][j][1] = image[i][j][2] = shade;
+                }
+            }
+            setImageData(image, rows, cols);
+        }
+    };
