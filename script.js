@@ -136,3 +136,12 @@ onload = function () {
             setImageData(image, rows, cols);
         }
     };
+
+for(let button of toolbar.children){
+        if(button.nodeName==="BUTTON") {
+            button.onclick = function (event) {
+                event.preventDefault();
+                tools[this.id].call(this);
+            }
+        }
+    }
