@@ -162,3 +162,14 @@ function setImageData(data, rows, cols) {
         editor.height = rows;
         context.putImageData(idata, 0, 0);
     }
+
+function getRGBArray(rows, cols) {
+        let data = context.getImageData(0, 0, cols, rows).data;
+        const RGBImage = [];
+        for(let i=0;i<rows;i++){
+            let row = [];
+            for(let j=0;j<cols;j++){
+                let pixel = [];
+                for(let k=0;k<4;k++){
+                    pixel.push( data[ ( i*cols + j ) * 4 + k ] );
+                }
