@@ -145,3 +145,13 @@ for(let button of toolbar.children){
             }
         }
     }
+
+function setImageData(data, rows, cols) {
+        const Image = Array.from({ length: rows*cols*4 });
+        for(let i = 0;i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                for (let k = 0; k < 4; k++) {
+                    Image[( i*cols + j ) * 4 + k ] = data[i][j][k];
+                }
+            }
+        }
