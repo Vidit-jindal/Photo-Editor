@@ -155,3 +155,10 @@ function setImageData(data, rows, cols) {
                 }
             }
         }
+    
+    const idata = context.createImageData(cols, rows);
+        idata.data.set(Image);
+        editor.width = cols;
+        editor.height = rows;
+        context.putImageData(idata, 0, 0);
+    }
