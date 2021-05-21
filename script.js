@@ -1,8 +1,9 @@
+
 onload = function () {
     const editor = document.getElementById("editor");
     const context = editor.getContext("2d");
     const toolbar = document.getElementById("toolbar");
-    
+
     const tools = {
         "upload" : function () {
             const upload = document.createElement('input');
@@ -29,12 +30,11 @@ onload = function () {
             link.href = image;
             link.click();
         },
-
         "flipHor" : function(){
             let cols = editor.width; // Width is number of columns
             let rows = editor.height; // Height is number of rows
             let image = getRGBArray(rows, cols);
-            
+
             for(let i=0;i<Math.floor(rows/2);i++){
                 for(let j=0;j<cols;j++){
                     let tmp = image[i][j];
@@ -44,12 +44,11 @@ onload = function () {
             }
             setImageData(image, rows, cols);
         },
-        
         "flipVert" : function(){
             let cols = editor.width; // Width is number of columns
             let rows = editor.height; // Height is number of rows
             let image = getRGBArray(rows, cols);
-            
+
             for(let i=0;i<rows;i++){
                 for(let j=0;j<Math.floor(cols/2);j++){
                     let tmp = image[i][j];
@@ -59,7 +58,21 @@ onload = function () {
             }
             setImageData(image, rows, cols);
         },
+        "rotateL" : function () {
+            let cols = editor.width; // Width is number of columns
+            let rows = editor.height; // Height is number of rows
+            let image = getRGBArray(rows, cols);
 
+            let limage = [];
+            for(let i=cols-1;i>=0;i--){
+                let row = [];
+                for(let j=0;j<rows;j++){
+                    row.push(image[j][i]);
+                }
+                limage.push(row);
+            }
+            setImageData(limage, cols, rows);
+        },
         "rotateR" : function () {
             let cols = editor.width; // Width is number of columns
             let rows = editor.height; // Height is number of rows
@@ -75,7 +88,6 @@ onload = function () {
             }
             setImageData(rimage, cols, rows);
         },
-
         "resize" : function(){
             let cols = editor.width; // Width is number of columns
             let rows = editor.height; // Height is number of rows
@@ -92,7 +104,7 @@ onload = function () {
                 alert('Input is not a proper number');
                 return;
             }
-            
+
             let hratio = rows/nrows;
             let wratio = cols/ncols;
 
@@ -121,23 +133,8 @@ onload = function () {
             setImageData(image, rows, cols);
         }
     };
-"greyscale" : function(){
-            let cols = editor.width; // Width is number of columns
-            let rows = editor.height; // Height is number of rows
-            let image = getRGBArray(rows, cols);
 
-            for(let i=0;i<rows;i++){
-                for(let j=0;j<cols;j++){
-                    let pixel = image[i][j];
-                    let shade = Math.floor(0.3*pixel[0]+0.59*pixel[1]+0.11*pixel[2]);
-                    image[i][j][0] = image[i][j][1] = image[i][j][2] = shade;
-                }
-            }
-            setImageData(image, rows, cols);
-        }
-    };
-
-for(let button of toolbar.children){
+    for(let button of toolbar.children){
         if(button.nodeName==="BUTTON") {
             button.onclick = function (event) {
                 event.preventDefault();
@@ -146,7 +143,7 @@ for(let button of toolbar.children){
         }
     }
 
-function setImageData(data, rows, cols) {
+    function setImageData(data, rows, cols) {
         const Image = Array.from({ length: rows*cols*4 });
         for(let i = 0;i < rows; i++) {
             for (let j = 0; j < cols; j++) {
@@ -155,15 +152,14 @@ function setImageData(data, rows, cols) {
                 }
             }
         }
-    
-    const idata = context.createImageData(cols, rows);
+        const idata = context.createImageData(cols, rows);
         idata.data.set(Image);
         editor.width = cols;
         editor.height = rows;
         context.putImageData(idata, 0, 0);
     }
 
-function getRGBArray(rows, cols) {
+    function getRGBArray(rows, cols) {
         let data = context.getImageData(0, 0, cols, rows).data;
         const RGBImage = [];
         for(let i=0;i<rows;i++){
@@ -173,3 +169,10 @@ function getRGBArray(rows, cols) {
                 for(let k=0;k<4;k++){
                     pixel.push( data[ ( i*cols + j ) * 4 + k ] );
                 }
+                row.push(pixel);
+            }
+            RGBImage.push(row);
+        }
+        return RGBImage;
+    }
+};
