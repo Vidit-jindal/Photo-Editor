@@ -17,3 +17,8 @@ body {
     display: flex;
     margin: 0 auto;
 }
+
+.center_buttons {
+    margin:auto;
+    display:block;
+}
